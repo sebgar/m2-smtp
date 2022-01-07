@@ -1,0 +1,63 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <section id="system">
+            <group id="smtp">
+                <group id="smtp" translate="label" type="text" sortOrder="200" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>SMTP</label>
+                    <field id="enabled" translate="label" type="select" sortOrder="100" showInDefault="1" showInWebsite="1" showInStore="1">
+                        <label>Enable SMTP</label>
+                        <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    </field>
+                    <field id="log_email" translate="label comment" type="select" sortOrder="110" showInDefault="1" showInWebsite="1" showInStore="1">
+                        <label>Log Emails</label>
+                        <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    </field>
+                    <field id="host" translate="label comment" type="text" sortOrder="120" showInDefault="1" showInWebsite="1" showInStore="1">
+                        <label>Host</label>
+                    </field>
+                    <field id="port" translate="label comment" type="text" sortOrder="130" showInDefault="1" showInWebsite="1" showInStore="1">
+                        <label>Port</label>
+                        <comment>Default ports: 25, 465, or 587. Port 465 (SSL required), Port 587 (TLS required)</comment>
+                    </field>
+                    <field id="protocol" translate="label comment" type="select" sortOrder="140" showInDefault="1" showInWebsite="1" showInStore="1">
+                        <label>Protocol</label>
+                        <source_model>Sga\Smtp\Model\Config\Source\Protocol</source_model>
+                    </field>
+                    <field id="authentication" translate="label" type="select" sortOrder="150" showInDefault="1" showInWebsite="1" showInStore="1">
+                        <label>Authentication</label>
+                        <source_model>Sga\Smtp\Model\Config\Source\Authentication</source_model>
+                    </field>
+                    <field id="username" translate="label" type="text" sortOrder="160" showInDefault="1" showInWebsite="1" showInStore="1">
+                        <label>Username</label>
+                    </field>
+                    <field id="password" translate="label" type="obscure" sortOrder="170" showInDefault="1" showInWebsite="1" showInStore="1">
+                        <label>Password</label>
+                        <backend_model>Magento\Config\Model\Config\Backend\Encrypted</backend_model>
+                    </field>
+                    <field id="return_path_email" translate="label comment" type="text" sortOrder="180" showInDefault="1" showInWebsite="1" showInStore="1">
+                        <label>Return-Path Email</label>
+                        <comment>Leave empty to ignore it.</comment>
+                        <validate>validate-email</validate>
+                    </field>
+                </group>
+                <group id="test_email" translate="label" type="text" sortOrder="200" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Send Test Email</label>
+                    <field id="from" translate="label" type="select" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                        <label>Send From</label>
+                        <source_model>Magento\Config\Model\Config\Source\Email\Identity</source_model>
+                    </field>
+                    <field id="to" translate="label" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                        <label>Send To</label>
+                    </field>
+                    <field id="sent" translate="label" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
+                        <label></label>
+                        <button_label>Test Now</button_label>
+                        <button_url>adminhtml/smtp/test</button_url>
+                        <frontend_model>Sga\Smtp\Block\Adminhtml\System\Config\Button</frontend_model>
+                    </field>
+                </group>
+            </group>
+        </section>
+    </system>
+</config>

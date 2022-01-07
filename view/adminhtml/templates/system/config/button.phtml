@@ -1,0 +1,17 @@
+<?php
+/** @var \Sga\Smtp\Block\Adminhtml\System\Config\Button $block */
+?>
+<div class="actions actions-test-email">
+    <button class="actions-test-email" type="button" id="<?= $block->getHtmlId() ?>">
+        <span><?= $block->escapeHtml($block->getButtonLabel()) ?></span>
+    </button>
+</div>
+<script type="text/x-magento-init">
+    {
+        "#system_smtp_test_email_to": {
+            "sga/smtp-test": {
+                "url": "<?= $block->getButtonUrl() ?>"
+            }
+        }
+    }
+</script>
