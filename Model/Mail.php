@@ -115,7 +115,11 @@ class Mail
         }
 
         if ($this->_returnPath[$storeId]) {
-            $message->setReturnPath($this->_returnPath[$storeId]);
+            if (method_exists($message, 'setReturnPath')) {
+                $message->setReturnPath($this->_returnPath[$storeId]);
+            } else {
+                $message->getHeaders()->addHeaders(["Return-Path" => $this->_returnPath[$storeId]]);
+            }
         }
 
         return $message;
